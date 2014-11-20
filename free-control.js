@@ -25,11 +25,13 @@ var FreeControl = function(code){
         var digit   = digit.toString(),
             length  = digit.length,
             current = 0;
+
+
         function _rec(key){
             sendCommand(key, false, false, function(){
                 current++;
                 if(current <= length){
-                    rec(digit[current]);
+                    _rec(digit[current]);
                 }
             });
         }
@@ -47,6 +49,14 @@ var FreeControl = function(code){
 
         volume:function(type){
             sendCommand( type === 'up' ? 'vol_inc' : 'vol_dec' );
+        },
+
+        arrow:function(direction){
+            sendCommand( direction );
+        },
+
+        program:function(type){
+            sendCommand( type === 'up' ? 'prgm_inc' : 'prgm_dec' );
         }
 
     };
