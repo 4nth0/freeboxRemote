@@ -8,8 +8,8 @@ var FreeControl = function(code){
             address = path
                         .replace('{code}'   , code)
                         .replace('{key}'    , key)
-                        .replace('{long}'   , long)
-                        .replace('{repeat}' , repeat);
+                        .replace('{long}'   , long || false)
+                        .replace('{repeat}' , repeat || false);
 
         xhr.open('GET', address, true);
         
@@ -43,6 +43,10 @@ var FreeControl = function(code){
 
         channel:function(channel){
             sendDigit(channel);
+        },
+
+        volume:function(type){
+            sendCommand( type === 'up' ? 'vol_inc' : 'vol_dec' );
         }
 
     };
